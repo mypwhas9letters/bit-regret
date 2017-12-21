@@ -1,5 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-
+const Navbar = () =>{
+  return(
+    <nav className="navbar navbar-light bg-light">
+      <a className="navbar-brand">
+        Bit Regret
+      </a>
+    </nav>
+  );
+}
 
 export default Navbar
