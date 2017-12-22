@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class Home extends Component {
   constructor(props){
@@ -24,18 +25,25 @@ class Home extends Component {
 
   render(){
     return(
-      <div className='container'>
-        <h1>How much money you could have made</h1>
+      <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <h1>Pick a coin</h1>
         <form onSubmit={this.onFormSubmit}>
           <input onChange={this.onInputChange} placeholder='Coin Name' value={this.state.coinName} name='coinName'/>
           <input onChange={this.onInputChange} placeholder='Date' value={this.state.date} name='date'/>
           <input onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' />
           <button type='submit' className="btn btn-primary">submit</button>
         </form>
-      </div>
+        <h1>{this.props.current}</h1>
+      </main>
     );
   }
 
 }
 
-export default Home
+function mapStateToProps(state){
+  return{
+    current: state.currentCoin
+  }
+}
+
+export default connect(mapStateToProps)(Home)

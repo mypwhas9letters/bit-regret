@@ -1,5 +1,11 @@
 // https://api.coinmarketcap.com/v1/ticker/?limit=10
 
+export function viewCoin(coin){
+  return{
+    type: "VIEW_COIN",
+    payload: coin
+  }
+}
 
 
 export function fetchCrypto(){

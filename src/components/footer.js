@@ -2,16 +2,12 @@ import React from 'react';
 
 const Footer = () =>{
   return (
-    <footer className="page-footer blue center-on-small-only bg-light">
-
-
+    <footer className="navbar fixed-bottom navbar-dark bg-dark">
         <div className="footer-copyright">
-            <div className="container-fluid">
-                © 2015 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-
+            <div className="container-fluid text-white">
+                © 2017 Copyright:  BitRegret.com
             </div>
         </div>
-
     </footer>
   );
 }

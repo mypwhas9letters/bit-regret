@@ -4,6 +4,7 @@ import Home from './components/home';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
+import CoinPage from './components/coinpage';
 
 
 class App extends Component {
@@ -11,9 +12,11 @@ class App extends Component {
     return (
       <div >
         <Navbar />
-        <div className="row">
-          <Sidebar />
-          <Home />
+        <div className="container-fluid">
+          <div className="row">
+            <Sidebar />
+            <Home />
+          </div>
         </div>
         <Footer />
       </div>

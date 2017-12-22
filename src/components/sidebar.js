@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
+import { bindActionCreators} from 'redux'
 
-import { fetchCrypto } from '../actions/coin_actions'
+import { fetchCrypto, viewCoin } from '../actions/coin_actions'
 
 class Sidebar extends Component{
   constructor(props){
@@ -11,23 +12,22 @@ class Sidebar extends Component{
     fetchCrypto()
   }
 
+  onClickCoin(coin){
+    this.props.viewCoin(coin)
+  }
+
+  coinList(){
+    return this.props.coins.map(coin => <li className="nav-item text-white" onClick={() => this.onClickCoin(coin)} key={coin}>{coin}</li>)
+  }
+
   render(){
-    //
-      const coinList = this.props.coins.map((coin) =>(<li key={coin}><a href="">{coin}</a></li>) )
-    //
-    
     return(
-      <div className="col-sm-3 col-md-2 sidebar">
-        <ul className="nav nav-sidebar ">
-          <li className="active"><a href="">Top 10 coins <span className="sr-only">(current)</span></a></li>
-          <ul>
-            {coinList}
-          </ul>
-          <li><a href="">Reports</a></li>
-          <li><a href="">Analytics</a></li>
-          <li><a href="">Export</a></li>
+      <nav className="className=col-sm-3 col-md-2 d-none d-sm-block bg-dark sidebar">
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item">Top 10 coins</li>
+          {this.coinList()}
         </ul>
-      </div>
+      </nav>
     )
   }
 }
@@ -35,8 +35,12 @@ class Sidebar extends Component{
 function mapStateToProps(state){
   return{
     coins: state.coins
-  }
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({viewCoin: viewCoin}, dispatch)
 }
 
 
-export default connect(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
