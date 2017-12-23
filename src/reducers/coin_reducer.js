@@ -1,7 +1,7 @@
-function coinsReducer(state = {coins: ["BTC", "ETH", "idk", "something", "test", "hello"], currentCoin: "Empty"}, action){
+function coinsReducer(state = {coins: null, currentCoin: "Empty"}, action){
   switch (action.type){
     case "FETCHED_COINS":
-      return [state.coins, ...action.payload];
+      return Object.assign({}, state, {coins: action.payload})
     case "VIEW_COIN":
       return Object.assign({}, state, {currentCoin: action.payload})
     default:

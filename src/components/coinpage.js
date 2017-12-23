@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 class CoinPage extends Component {
   render() {
     return (
-      <div className='container'>
-        <h1>Current coin selected: {this.props.current}</h1>
-      </div>
+      <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <h1>Current coin selected: {this.props.current.name}</h1>
+      </main>
     )
   }
 }

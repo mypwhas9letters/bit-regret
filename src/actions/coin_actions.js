@@ -1,5 +1,3 @@
-// https://api.coinmarketcap.com/v1/ticker/?limit=10
-
 export function viewCoin(coin){
   return{
     type: "VIEW_COIN",
@@ -7,13 +5,21 @@ export function viewCoin(coin){
   }
 }
 
+export function fetchTopTen(){
+  return function(dispatch){
+    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=10")
+    .then(res => res.json())
+    .then(json => {
+      dispatch({type: "FETCHED_COINS", payload: json})
+    })
+  }
+}
 
-export function fetchCrypto(){
-  fetch("https://api.coinmarketcap.com/v1/ticker/?limit=10")
-  .then(res => res.json())
-  .then(json => {
-    console.log(json)
-  });
+export function fetchCoinDetail(input){
+  console.log(input)
+  return{
+    type: "Test"
+  }
 }
 //
 //

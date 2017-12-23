@@ -16,6 +16,7 @@ class App extends Component {
           <div className="row">
             <Sidebar />
             <Home />
+            <CoinPage />
           </div>
         </div>
         <Footer />
