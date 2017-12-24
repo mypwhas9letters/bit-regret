@@ -1,11 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 const Navbar = () =>{
   return(
     <nav className="navbar navbar-dark bg-dark">
-      <a className="navbar-brand text-white">
-        Bit Regret
-      </a>
+      <NavLink className="navbar-brand text-white" to="./"><h3>Bit Regret</h3></NavLink>
     </nav>
   );
 }

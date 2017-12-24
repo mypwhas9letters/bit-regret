@@ -7,7 +7,7 @@ export function viewCoin(coin){
 
 export function fetchTopTen(){
   return function(dispatch){
-    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=10")
+    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=20")
     .then(res => res.json())
     .then(json => {
       dispatch({type: "FETCHED_COINS", payload: json})
@@ -15,20 +15,12 @@ export function fetchTopTen(){
   }
 }
 
-export function fetchCoinDetail(input){
-  console.log(input)
-  return{
-    type: "Test"
+export function fetchHistoricalDetail(input){
+  return function(dispatch){
+    fetch("https://min-api.cryptocompare.com/data/pricehistorical?fsym=BTC&tsyms=USD&ts=1514102153")
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+    })
   }
 }
-//
-//
-// export function getParkingSpot(id){
-//   return function(dispatch){
-//     fetch(`https://parallelp-server.herokuapp.com/api/v1/parking_spots/${id}`)
-//     .then(res => res.json())
-//     .then(json => {
-//         dispatch({type: "GET_PARKING_SPOT", payload: json})
-//     })
-//   }
-// }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
+
 
 import Home from './components/home';
 import Footer from './components/footer';
@@ -15,8 +17,9 @@ class App extends Component {
         <div className="container-fluid">
           <div className="row">
             <Sidebar />
-            <Home />
-            <CoinPage />
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/coin" component={CoinPage}/>
+
           </div>
         </div>
         <Footer />

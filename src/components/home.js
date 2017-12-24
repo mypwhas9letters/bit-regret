@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchCoinDetail } from '../actions/coin_actions'
+import { fetchHistoricalDetail } from '../actions/coin_actions'
 
 class Home extends Component {
   constructor(props){
@@ -20,7 +20,7 @@ class Home extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.fetchCoinDetail(this.state)
+    this.props.fetchHistoricalDetail(this.state)
     //https://min-api.cryptocompare.com/data/pricehistorical?fsym="BTC"&tsyms="USD"&ts="17121980400"
     //send a post request to the api
     //require unix timestamp
@@ -28,7 +28,7 @@ class Home extends Component {
 
   render(){
     return(
-      <main role="main" className="col-sm-9 ml-sm-auto col-md-10 pt-3">
+      <main role="main" className="col-sm-9 ml-sm-auto col-md-9 pt-3">
         <h1>Pick a coin</h1>
         <form onSubmit={this.onFormSubmit}>
           <input onChange={this.onInputChange} placeholder='Coin Name' value={this.state.coinName} name='coinName'/>
@@ -43,7 +43,7 @@ class Home extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchCoinDetail }, dispatch)
+  return bindActionCreators({ fetchHistoricalDetail }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Home)
