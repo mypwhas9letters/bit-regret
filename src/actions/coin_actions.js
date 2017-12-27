@@ -17,10 +17,11 @@ export function fetchTopTen(){
 
 export function fetchHistoricalDetail(input){
   return function(dispatch){
-    fetch("https://min-api.cryptocompare.com/data/pricehistorical?fsym=BTC&tsyms=USD&ts=1514102153")
+    fetch(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${input.coinName}&tsyms=USD&ts=${input.date}`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
+      dispatch({type: "HISTORICALDATA", payload: json})
+
     })
   }
 }

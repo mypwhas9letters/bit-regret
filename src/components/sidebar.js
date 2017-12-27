@@ -26,10 +26,8 @@ class Sidebar extends Component{
   }
 }
 
-function mapStateToProps(state){
-  return{
-    coins: state.coins
-  };
+function mapStateToProps({ coins }){
+  return{ coins };
 }
 
 function mapDispatchToProps(dispatch){
