@@ -15,7 +15,8 @@ class Sidebar extends Component{
 
   render(){
     console.log(this.props)
-    const coinList = !this.props.coins ? null : this.props.coins.map(coin => <NavLink to="/coin" className="nav-item text-white" onClick={() => this.props.viewCoin(coin)} key={coin.name}>{coin.name}</NavLink>)
+
+    const coinList = this.props.coins === null ? null : this.props.coins.map(coin => <NavLink to="/coin" className="nav-item text-white" onClick={() => this.props.viewCoin(coin)} key={coin.name}>{coin.name}</NavLink>)
     return(
       <nav className="className=col-sm-3 col-md-2 d-none d-sm-block bg-dark sidebar">
         <ul className="nav nav-pills flex-column">
@@ -28,7 +29,7 @@ class Sidebar extends Component{
 }
 
 function mapStateToProps({ coins }){
-  return{ coins };
+  return{ coins: coins.coins };
 }
 
 function mapDispatchToProps(dispatch){

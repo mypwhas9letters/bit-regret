@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Newform from './form'
@@ -20,11 +19,7 @@ class Home extends Component {
   }
 
   onInputChange = (event) => {
-    console.log(event.target)
-    let x = this
-    debugger
     this.setState({coinName: event.target.value, price: this.props.coins.find(coin => coin.id === event.target.symbol)});
-    console.log(this.state)
   }
 
 
@@ -38,7 +33,6 @@ class Home extends Component {
   }
 
   render(){
-    console.log(this.props)
     const list = !this.props.coins ? null : this.props.coins.map(function(coin){
       return <option key={coin.name} value={coin.sybmol} price={coin.price_usd}>{coin.name}</option>
     })
@@ -61,8 +55,8 @@ class Home extends Component {
 
 }
 
-function mapStateToProps({ historicalPrice, coins }){
-  return { historicalPrice, coins }
+function mapStateToProps({ coins }){
+  return { historicalPrice: coins.historicalPrice, coins:coins.coins }
 }
 
 export default connect(mapStateToProps, { fetchHistoricalDetail })(Home)

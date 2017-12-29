@@ -1,25 +1,52 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux';
+
+import { fetchHistoricalDetail } from '../actions/coin_actions';
+
 
 class Newform extends Component {
-  renderTitleField(field) {
-    return(
+  renderField(field) {
+    return (
       <div>
+      <label>{field.label}</label>
         <input type="text" {...field.input}/>
-      <div>
+        {field.meta.touched ? field.meta.error : ""}
+      </div>
     )
   }
 
-  render() {
-    return (
-      <form>
-        <Field name='title' component={this.renderTitleField} />
-      </form>
-    );
+  onSubmit = (values) => {
+    this.props.fetchHistoricalDetail(values, () => {
+      this.props.history.push('/')
+    })
   }
 
-};
+  render() {
+    const { handleSubmit } = this.props
+    return (
+      <form onSubmit={handleSubmit(this.onSubmit)}>
+        <Field name='title' label='Title' component={this.renderField} />
+        <Field name='tags' label='Tags' component={this.renderField} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
+
+}
+
+function validate(values){
+  const errors = {};
+  if(!values.title){
+    errors.title = "Enter a title!";
+  }
+  if(!values.tags){
+    errors.tag = "Enter a tag!";
+  }
+  return errors
+}
 
 export default reduxForm({
+  validate,
   form: 'Newform'
-})(Newform);
+})(connect(null, { fetchHistoricalDetail })(Newform));

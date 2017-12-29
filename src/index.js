@@ -6,11 +6,11 @@ import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom'
 
 
-import coinsReducer from './reducers/coin_reducer';
+import rootReducer from './reducers/index';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(coinsReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
