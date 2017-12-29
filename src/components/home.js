@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchHistoricalDetail } from '../actions/coin_actions'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
-
-
 import 'react-datepicker/dist/react-datepicker.css';
+import Newform from './form'
+
+import { fetchHistoricalDetail } from '../actions/coin_actions';
 
 class Home extends Component {
   constructor(props){
@@ -15,13 +14,19 @@ class Home extends Component {
     this.state = {
       date: null,
       coinName: 'BTC',
-      amount: ''
+      amount: '',
+      price: 0
     };
   }
 
   onInputChange = (event) => {
-    this.setState({[event.target.name]: event.target.value});
+    console.log(event.target)
+    let x = this
+    debugger
+    this.setState({coinName: event.target.value, price: this.props.coins.find(coin => coin.id === event.target.symbol)});
+    console.log(this.state)
   }
+
 
   dateChange = (date) => {
     this.setState({ date });
@@ -29,17 +34,14 @@ class Home extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-
-    let input = {
-      date: (moment.unix(this.state.date)._i)/1000000,
-      coinName: this.state.coinName,
-      amount: this.state.amount
-    }
-    this.props.fetchHistoricalDetail(input)
+    this.props.fetchHistoricalDetail(this.state);
   }
 
   render(){
-    const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol}>{coin.name}</option>)
+    console.log(this.props)
+    const list = !this.props.coins ? null : this.props.coins.map(function(coin){
+      return <option key={coin.name} value={coin.sybmol} price={coin.price_usd}>{coin.name}</option>
+    })
     return(
       <main role="main" className="col-sm-9 ml-sm-auto col-md-9 pt-3">
         <h1>Pick a coin</h1>
@@ -52,6 +54,7 @@ class Home extends Component {
           <button type='submit' className="btn btn-primary">submit</button>
         </form>
         <h1>{this.props.historicalPrice === null ? null : Object.values(this.props.historicalPrice)[0].USD}</h1>
+        <Newform />
       </main>
     );
   }
@@ -62,8 +65,4 @@ function mapStateToProps({ historicalPrice, coins }){
   return { historicalPrice, coins }
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchHistoricalDetail }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, { fetchHistoricalDetail })(Home)
