@@ -19,8 +19,7 @@ export function fetchTopTen(){
   }
 }
 
-export function fetchHistoricalDetail(input, callback){
-  debugger
+export function fetchHistoricalDetail(input){
   let date = (moment.unix(input.date)._i)/1000000;
   return function(dispatch){
     fetch(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${input.coinName}&tsyms=USD&ts=${date}`)
@@ -30,6 +29,5 @@ export function fetchHistoricalDetail(input, callback){
         type: "HISTORICAL_DATA",
         payload: json})
     })
-    .then(() => callback())
   }
 }
