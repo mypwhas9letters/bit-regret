@@ -1,12 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from "../images/bitcoin.png"
+import logo from "../images/bitregret.png"
 
 const Navbar = () =>{
   return(
     <nav className="container navbar navbar-expand-md fixed-top ">
       <NavLink className="navbar-brand" to="./">
-        <img src={logo} width="40" height="40" className="d-inline-block align-top" alt="" />
+        <img src={logo} width="50" height="50" className="d-inline-block align-top" alt="" />
+      </NavLink>
+      <NavLink className="nav-item nav-link" to="./">
         Bit Regret
       </NavLink>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,8 +16,8 @@ const Navbar = () =>{
       </button>
       <div className="collapse navbar-collapse" id="navbarCollapse">
         <ul className="navbar-nav mr-auto">
-          <NavLink className="nav-item nav-link" to="/">Home <span className="sr-only">(current)</span></NavLink>
-          <NavLink className="nav-item nav-link" to="/">Features</NavLink>
+          <NavLink className="nav-item nav-link" to="/chart">CryptoCurrencies <span className="sr-only">(current)</span></NavLink>
+          <NavLink className="nav-item nav-link" to="/"></NavLink>
           <NavLink className="nav-item nav-link" to="/">Pricing</NavLink>
         </ul>
       </div>

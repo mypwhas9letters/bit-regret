@@ -6,6 +6,8 @@ import Footer from './components/footer';
 import Navbar from './components/navbar';
 import Sidebar from './components/sidebar';
 import CoinPage from './components/coinpage';
+import Chart from './components/chart';
+
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
               <Sidebar />
               <Route exact path="/" component={Home}/>
               <Route exact path="/coin" component={CoinPage}/>
+              <Route exact path="/chart" component={Chart}/>
             </div>
           </div>
         <Footer />
