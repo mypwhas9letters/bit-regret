@@ -1,8 +1,40 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  /* background-color: #252831; */
-  background-color: black;
+  background-color: #252831;
+  /* color: #21f28a; */
+  color: white;
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 60px;
+  z-index: 1000;
+  padding: 20px 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.inlinediv {
+    display: inline-block;
+}
+
+a {
   color: #21f28a;
 }

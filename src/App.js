@@ -10,15 +10,15 @@ import CoinPage from './components/coinpage';
 class App extends Component {
   render() {
     return (
-      <div className="bgcolor">
+      <div className="container">
         <Navbar />
-        <div className="container-fluid">
-          <div className="row">
-            <Sidebar />
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/coin" component={CoinPage}/>
+          <div className="container-fluid">
+            <div className="row">
+              <Sidebar />
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/coin" component={CoinPage}/>
+            </div>
           </div>
-        </div>
         <Footer />
       </div>
     );

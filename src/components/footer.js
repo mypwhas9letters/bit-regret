@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () =>{
   return (
-    <footer className="navbar fixed-bottom navbar-dark bg-dark">
-      <div className="footer-copyright">
-        <div className="container-fluid text-white">
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-copyright">
           © 2017 Copyright:  BitRegret.com
         </div>
       </div>

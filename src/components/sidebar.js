@@ -10,17 +10,14 @@ class Sidebar extends Component{
     super(props)
     this.state = {}
 
-    // this.props.fetchTopTen()
+    this.props.fetchTopTen()
   }
 
   render(){
-    console.log(this.props)
-
-    const coinList = this.props.coins === null ? null : this.props.coins.map(coin => <NavLink to="/coin" className="nav-item text-white" onClick={() => this.props.viewCoin(coin)} key={coin.name}>{coin.name} {coin.price_usd}</NavLink>)
+    const coinList = this.props.coins === null ? null : this.props.coins.map(coin => <li className="nav-item" key={coin.name}><NavLink to="/coin" className="nav-link" onClick={() => this.props.viewCoin(coin)}>{coin.name} {coin.price_usd}</NavLink></li>)
     return(
-      <nav className="className=col-sm-3 col-md-3 d-none d-sm-block bg-dark sidebar">
+      <nav className="col-sm-3 col-md-2 d-none d-sm-block sidebar">
         <ul className="nav nav-pills flex-column">
-          <li className="nav-item text-white"><h3>Top 20 coins</h3></li>
           { coinList }
         </ul>
       </nav>
