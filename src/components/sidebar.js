@@ -10,7 +10,7 @@ class Sidebar extends Component{
     super(props)
     this.state = {}
 
-    this.props.fetchTopTen()
+    // this.props.fetchTopTen()
   }
 
   render(){
@@ -28,8 +28,8 @@ class Sidebar extends Component{
   }
 }
 
-function mapStateToProps({ coins }){
-  return{ coins: coins.coins };
+function mapStateToProps(state){
+  return{ coins: state.coins.coins };
 }
 
 function mapDispatchToProps(dispatch){

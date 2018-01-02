@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk'
-import { BrowserRouter } from 'react-router-dom'
+import thunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
 
-
+import './index.css'
 import rootReducer from './reducers/index';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';

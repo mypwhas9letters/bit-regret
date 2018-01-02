@@ -19,7 +19,7 @@ class Home extends Component {
   }
 
   onInputChange = (event) => {
-    this.setState({coinName: event.target.value, price: this.props.coins.find(coin => coin.id === event.target.symbol)});
+    this.setState({coinName: event.target.value });
   }
 
   onAmountChange = (event) => {
@@ -33,8 +33,6 @@ class Home extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.fetchHistoricalDetail(this.state);
-    let x = this
-    
     this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName)})
   }
 
