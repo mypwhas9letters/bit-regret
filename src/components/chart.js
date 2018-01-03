@@ -16,7 +16,7 @@ class Chart extends Component {
     const tableRows = this.props.coins.map(coin => ChartData(coin))
     return(
       <main role="main" className="col-sm-8 ml-sm-auto col-md-9 pt-3">
-      <h2>Current Price</h2>
+      <h2>CryptoCurrency Market</h2>
       <div className="table-responsive">
         <table className="table table-striped">
           <thead>
@@ -24,8 +24,8 @@ class Chart extends Component {
               <th>Rank</th>
               <th>Name</th>
               <th>Price (USD)</th>
-              <th>Change(24hr)</th>
-              <th>Market Cap USD</th>
+              <th>Change (24hr)</th>
+              <th>Market Cap (USD)</th>
             </tr>
           </thead>
           <tbody>

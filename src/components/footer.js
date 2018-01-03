@@ -4,7 +4,7 @@ const Footer = () =>{
   return (
     <footer className="footer">
       <div className="container">
-          © 2017 Copyright:  BitRegret.com
+          © 2017 Copyright:  BitRegret.cc
       </div>
     </footer>
   );

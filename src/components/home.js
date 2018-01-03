@@ -13,17 +13,12 @@ class Home extends Component {
       date: null,
       coinName: 'BTC',
       amount: 0,
-      price: 0,
       coin: ""
     };
   }
 
   onInputChange = (event) => {
-    this.setState({coinName: event.target.value });
-  }
-
-  onAmountChange = (event) => {
-    this.setState({amount: event.target.value})
+    this.setState({[event.target.name]: event.target.value });
   }
 
   dateChange = (date) => {
@@ -33,49 +28,47 @@ class Home extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.fetchHistoricalDetail(this.state);
-    this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName)})
+    this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName), date: null})
+
   }
 
   render(){
-    const list = !this.props.coins ? null : this.props.coins.map(function(coin){
-      return <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>
-    })
+    const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <main role="main" className="col-sm-8 ml-sm-auto col-md-9 pt-3">
-        <h1>Pick a coin</h1>
+        <h1>How Much You Could Have Earned?</h1>
 
         <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
 
-              <label>Coin Name </label>
-              <select className="form-control" name="coinName" onChange={this.onInputChange}>
+              <label>CryptoCurrency Name </label>
+              <select className="form-control" name="coinName" onChange={this.onInputChange} required>
                 { list }
               </select>
             </div>
 
             <div className="form-group">
-            <label>Amount </label>
-            <input className="form-control" onChange={this.onAmountChange} placeholder='Amount of Money' value={this.state.amount} name='amount' />
+            <label>Amount (USD)</label>
+            <input className="form-control" onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' type="number" required/>
 
             </div>
 
-              <div className="form-group">
+            <div className="form-group">
               <label>Date </label>
-              <div className="">
-                <DatePicker selected={this.state.date} onChange={this.dateChange} />
-              </div>
+                <DatePicker selected={this.state.date} onChange={this.dateChange} required/>
             </div>
 
 
 
-          <button type='submit' className="btn btn-primary">submit</button>
+          <button type='submit' className="btn btn-primary">Submit</button>
         </form>
-
+      <br />
         {this.props.historicalPrice === null ? null :
+          Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1>This coin did not exist</h1> :
           <div>
-          <h2>Old Price {Object.values(this.props.historicalPrice)[0].USD}</h2>
-          <h2>Current Price{this.state.coin.price_usd}</h2>
-          <h2>Today it would be worth {(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2>
+            <h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2>
+            <h2>Current Price: ${this.state.coin.price_usd}</h2>
+            <h2>Today It Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2>
           </div>
         }
 

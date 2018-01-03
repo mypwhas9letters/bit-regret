@@ -21,6 +21,7 @@ class Sidebar extends Component{
     return(
       <nav className="col-sm-3 col-md-2 d-none d-sm-block sidebar">
         <ul className="nav nav-pills flex-column">
+          <li className="nav-item"><h4>Current Price</h4></li>
           { coinList }
         </ul>
       </nav>

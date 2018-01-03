@@ -18,7 +18,6 @@ const Navbar = () =>{
         <ul className="navbar-nav mr-auto">
           <NavLink className="nav-item nav-link" to="/chart">CryptoCurrencies <span className="sr-only">(current)</span></NavLink>
           <NavLink className="nav-item nav-link" to="/"></NavLink>
-          <NavLink className="nav-item nav-link" to="/">Pricing</NavLink>
         </ul>
       </div>
     </nav>
