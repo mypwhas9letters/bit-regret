@@ -29,7 +29,6 @@ class Home extends Component {
     event.preventDefault();
     this.props.fetchHistoricalDetail(this.state);
     this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName), date: null})
-
   }
 
   render(){
@@ -69,7 +68,7 @@ class Home extends Component {
           <ul className="list-group">
             <li className="list-group-item grayBG"><h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2></li>
             <li className="list-group-item grayBG"><h2>Current Price: ${this.state.coin.price_usd}</h2></li>
-            <li className="list-group-item grayBG whiteText"><h2>Today It Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
+            <li className="list-group-item grayBG whiteText"><h2>Today {this.state.coin.name} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
           </ul>
         }
 
