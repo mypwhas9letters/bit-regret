@@ -7,9 +7,9 @@ export function viewCoin(coin){
   }
 }
 
-export function fetchTopTen(){
+export function fetchTopTwenty(){
   return function(dispatch){
-    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=20")
+    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=30")
     .then(res => res.json())
     .then(json => {
       dispatch({

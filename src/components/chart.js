@@ -38,8 +38,8 @@ class Chart extends Component {
   }
 }
 
-function mapStateToProps({ coinReducer }){
-  return { coins: coinReducer.coins }
+function mapStateToProps({ coins }){
+  return { coins }
 }
 
 export default connect(mapStateToProps)(Chart)

@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-
+import { NavLink } from 'react-router-dom';
 
 const SideBarData = (coin) => {
   return (
@@ -11,5 +10,3 @@ const SideBarData = (coin) => {
 }
 
 export default SideBarData
-
-// <NavLink to="/coin" className="nav-link" onClick={() => this.props.viewCoin(coin)}>{coin.name} - ${coin.price_usd}</NavLink>

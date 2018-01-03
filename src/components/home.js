@@ -33,10 +33,11 @@ class Home extends Component {
   }
 
   render(){
+    console.log(this.props)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
-      <main role="main" className="col-sm-8 ml-sm-auto col-md-9 pt-3">
-        <h1>How Much You Could Have Earned?</h1>
+      <div className="col-sm-8 ml-sm-auto col-md-9 pt-3">
+        <h1 className="whiteText">How Much You Could've Earned?</h1>
 
         <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
@@ -64,22 +65,22 @@ class Home extends Component {
         </form>
       <br />
         {this.props.historicalPrice === null ? null :
-          Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1>This coin did not exist</h1> :
-          <div>
-            <h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2>
-            <h2>Current Price: ${this.state.coin.price_usd}</h2>
-            <h2>Today It Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2>
-          </div>
+          Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1 className="whiteText">This coin did not exist</h1> :
+          <ul className="list-group">
+            <li className="list-group-item grayBG"><h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2></li>
+            <li className="list-group-item grayBG"><h2>Current Price: ${this.state.coin.price_usd}</h2></li>
+            <li className="list-group-item grayBG whiteText"><h2>Today It Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
+          </ul>
         }
 
-      </main>
+      </div>
     );
   }
 
 }
 
-function mapStateToProps({ coinReducer }){
-  return { historicalPrice: coinReducer.historicalPrice, coins:coinReducer.coins }
+function mapStateToProps({coins, historicalPrice}){
+  return { coins, historicalPrice }
 }
 
 export default connect(mapStateToProps, { fetchHistoricalDetail })(Home)

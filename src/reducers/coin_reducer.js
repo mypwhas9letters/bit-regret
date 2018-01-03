@@ -1,4 +1,4 @@
-function coinsReducer(state = {coins: [{id: "bitcoin", name: "Bitcoin", symbol: "BTC", rank: "1", price_usd: "15112.023453"},{id: "ripple", name: "Ripple", symbol: "XRP", rank: "2", price_usd: "2.4008"}], currentCoin: "Empty", historicalPrice: null}, action){
+function coinsReducer(state = {coins: [], currentCoin: "Empty", historicalPrice: null}, action){
   switch (action.type){
     case "FETCHED_COINS":
       return Object.assign({}, state, {coins: action.payload})
@@ -12,5 +12,3 @@ function coinsReducer(state = {coins: [{id: "bitcoin", name: "Bitcoin", symbol: 
 }
 
 export default coinsReducer
-
-// this.props.coins.find(coin => coin.id === 'bitcoin')

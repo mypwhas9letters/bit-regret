@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux'
-import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-import { fetchTopTen, viewCoin } from '../actions/coin_actions'
-import SideBarData from './sideBarData'
+import SideBarData from './sideBarData';
+import { fetchTopTwenty, viewCoin } from '../actions/coin_actions';
 
 class Sidebar extends Component{
-  constructor(props){
-    super(props)
-    this.state = {}
-  }
 
   componentDidMount(){
-    this.props.fetchTopTen()
+    this.props.fetchTopTwenty()
   }
 
   render(){
@@ -21,7 +16,7 @@ class Sidebar extends Component{
     return(
       <nav className="col-sm-3 col-md-2 d-none d-sm-block sidebar">
         <ul className="nav nav-pills flex-column">
-          <li className="nav-item"><h4>Current Price</h4></li>
+          <li className="nav-item"><h4 className="whiteText">Current Price</h4></li>
           { coinList }
         </ul>
       </nav>
@@ -29,13 +24,8 @@ class Sidebar extends Component{
   }
 }
 
-function mapStateToProps({ coinReducer }){
-  return{ coins: coinReducer.coins };
+function mapStateToProps({ coins }){
+  return{ coins };
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ viewCoin, fetchTopTen }, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps, { viewCoin, fetchTopTwenty })(Sidebar)

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { applyMiddleware, createStore } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import './index.css'
-import rootReducer from './reducers/index';
+import './index.css';
 import App from './App';
+import coinReducer from './reducers/coin_reducer';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(coinReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
