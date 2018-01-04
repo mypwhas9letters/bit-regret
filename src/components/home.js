@@ -36,7 +36,7 @@ class Home extends Component {
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <div className="col-sm-8 ml-sm-auto col-md-9 pt-3">
-        <h1 className="whiteText">How Much You Could've Earned?</h1>
+        <h1 className="grayText">How Much You Could've Earned?</h1>
 
         <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
@@ -64,11 +64,11 @@ class Home extends Component {
         </form>
       <br />
         {this.props.historicalPrice === null ? null :
-          Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1 className="whiteText">This coin did not exist</h1> :
+          Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1 className="grayText">This coin did not exist</h1> :
           <ul className="list-group">
             <li className="list-group-item grayBG"><h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2></li>
             <li className="list-group-item grayBG"><h2>Current Price: ${this.state.coin.price_usd}</h2></li>
-            <li className="list-group-item grayBG whiteText"><h2>Today {this.state.coin.name} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
+            <li className="list-group-item grayBG grayText"><h2>Today {this.state.coin.name} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
           </ul>
         }
 

@@ -38,7 +38,7 @@ a {
   color: #57cee7;
 }
 
-.whiteText {
+.grayText {
   color: #c1c8c9;
 }
 
@@ -48,6 +48,7 @@ nav {
 
 .font {
   font-family: "Noto Serif", serif;
+  color: #57cee7;
 }
 
 .grayBG {
