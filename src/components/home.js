@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { fetchHistoricalDetail } from '../actions/coin_actions';
+import Options from './amountOptions';
 
 class Home extends Component {
   constructor(props){
@@ -12,13 +13,20 @@ class Home extends Component {
     this.state = {
       date: null,
       coinName: 'BTC',
-      amount: 0,
+      amount: "",
+      usd: true,
       coin: ""
     };
   }
 
   onInputChange = (event) => {
     this.setState({[event.target.name]: event.target.value });
+  }
+
+  onAmountTypeChange = (event) => {
+    this.setState({usd: !this.state.usd, amount: ""});
+    console.log(this.state)
+
   }
 
   dateChange = (date) => {
@@ -32,7 +40,7 @@ class Home extends Component {
   }
 
   render(){
-    console.log(this.props)
+    console.log(this.state)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <div className="col-sm-8 ml-sm-auto col-md-9 pt-3">
@@ -47,10 +55,17 @@ class Home extends Component {
               </select>
             </div>
 
-            <div className="form-group">
-            <label>Amount (USD)</label>
-            <input className="form-control" onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' type="number" required/>
 
+            <div className="form-group">
+              Type: <button type="button" className="btn btn-outline-primary blueMargin" onClick={this.onAmountTypeChange}>{this.state.usd ? "Amount (USD)" : "Other Things"}</button>
+              {this.state.usd ?
+              <div>
+                <input className="form-control" onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' type="text" required />
+              </div>
+              :
+              < Options onChange={this.onInputChange}/>
+
+              }
             </div>
 
             <div className="form-group">
