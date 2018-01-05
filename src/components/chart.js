@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ChartData from './chartData'
+import ChartData from './chartData';
+import { fetchTopNext80 } from '../actions/coin_actions';
+
 
 class Chart extends Component {
   constructor(props){
@@ -11,11 +13,15 @@ class Chart extends Component {
     }
   }
 
+  // componentDidMount(){
+  //   this.props.fetchTopNext80()
+  // }
+
   render(){
     console.log(this.props)
     const tableRows = this.props.coins.map(coin => ChartData(coin))
     return(
-      <main role="main" className="col-sm-8 ml-sm-auto col-md-9 pt-3">
+      <main role="main" className="col-md-9 pt-3">
       <h2 className="grayText">CryptoCurrency Market</h2>
       <div className="table-responsive">
         <table className="table table-striped">
@@ -42,4 +48,4 @@ function mapStateToProps({ coins }){
   return { coins }
 }
 
-export default connect(mapStateToProps)(Chart)
+export default connect(mapStateToProps, { fetchTopNext80 })(Chart)

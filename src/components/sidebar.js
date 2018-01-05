@@ -13,7 +13,7 @@ class Sidebar extends Component{
   render(){
     const coinList = this.props.coins === null ? null : this.props.coins.map(coin => SideBarData(coin))
     return(
-      <nav className="col-sm-3 col-md-2 d-none d-sm-block sidebar">
+      <nav className="col-md-3 d-none d-md-block sidebar">
         <ul className="nav nav-pills flex-column">
           <li className="nav-item"><h4 className="grayText">Current Price</h4></li>
           { coinList }

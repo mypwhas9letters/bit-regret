@@ -11,13 +11,15 @@ import Sidebar from './components/sidebar';
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <div>
         <Navbar />
-          <div className="row">
-            <Sidebar />
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/coin" component={CoinPage}/>
-            <Route exact path="/chart" component={Chart}/>
+          <div className="container">
+            <div className="row">
+              <Sidebar />
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/coin" component={CoinPage}/>
+              <Route exact path="/chart" component={Chart}/>
+            </div>
           </div>
         <Footer />
       </div>

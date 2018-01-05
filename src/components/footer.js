@@ -2,11 +2,11 @@ import React from 'react';
 
 const Footer = () =>{
   return (
-    <footer className="footer">
-      <div className="container">
-          © 2017 Copyright:  BitRegret.cc
-      </div>
-    </footer>
+    <div className="container">
+      <footer className="footer">
+        © 2017 Copyright BitRegret.cc
+      </footer>
+    </div>
   );
 }
 

@@ -15,7 +15,8 @@ class Home extends Component {
       coinName: 'BTC',
       amount: "",
       usd: true,
-      coin: ""
+      coin: "",
+      itemName: ""
     };
   }
 
@@ -25,8 +26,6 @@ class Home extends Component {
 
   onAmountTypeChange = (event) => {
     this.setState({usd: !this.state.usd, amount: ""});
-    console.log(this.state)
-
   }
 
   dateChange = (date) => {
@@ -43,58 +42,82 @@ class Home extends Component {
     console.log(this.state)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
-      <div className="col-sm-8 ml-sm-auto col-md-9 pt-3">
-        <h1 className="grayText">How Much You Could've Earned?</h1>
+      <div className="col-md-9 pt-3">
 
+
+
+        <h1 className="grayText">How Much You Could've Earned?</h1>
         <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
+            <label>CryptoCurrency Name </label>
+            <select className="form-control" name="coinName" onChange={this.onInputChange} required>
+              { list }
+            </select>
+          </div>
 
-              <label>CryptoCurrency Name </label>
-              <select className="form-control" name="coinName" onChange={this.onInputChange} required>
-                { list }
-              </select>
+          <div className="form-group">
+            Type: <button type="button" className="btn btn-outline-primary blueMargin btn-sm" onClick={this.onAmountTypeChange}>{this.state.usd ? "Amount (USD)" : "Other Things"}</button>
+            {this.state.usd ?
+            <div>
+              <input className="form-control" onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' type="text" required />
             </div>
+            :
+            < Options onChange={this.onInputChange}/>
+            }
+          </div>
 
-
-            <div className="form-group">
-              Type: <button type="button" className="btn btn-outline-primary blueMargin" onClick={this.onAmountTypeChange}>{this.state.usd ? "Amount (USD)" : "Other Things"}</button>
-              {this.state.usd ?
-              <div>
-                <input className="form-control" onChange={this.onInputChange} placeholder='Amount of Money' value={this.state.amount} name='amount' type="text" required />
-              </div>
-              :
-              < Options onChange={this.onInputChange}/>
-
-              }
-            </div>
-
-            <div className="form-group">
-              <label>Date </label>
-                <DatePicker selected={this.state.date} onChange={this.dateChange} required/>
-            </div>
-
-
+          <div className="form-group">
+            <label>Date </label>
+              <DatePicker selected={this.state.date} onChange={this.dateChange} required/>
+          </div>
 
           <button type='submit' className="btn btn-primary">Submit</button>
         </form>
-      <br />
+        <br />
         {this.props.historicalPrice === null ? null :
           Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1 className="grayText">This coin did not exist</h1> :
-          <ul className="list-group">
-            <li className="list-group-item grayBG"><h2>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h2></li>
-            <li className="list-group-item grayBG"><h2>Current Price: ${this.state.coin.price_usd}</h2></li>
-            <li className="list-group-item grayBG grayText"><h2>Today {this.state.coin.name} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h2></li>
-          </ul>
-        }
 
+          <div>
+
+
+
+
+          <ul className="list-group">
+            <li className="list-group-item grayBG"><h3>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h3></li>
+            <li className="list-group-item grayBG"><h3>Current Price: ${this.state.coin.price_usd}</h3></li>
+            <li className="list-group-item grayBG grayText"><h3>Today, ${this.state.amount} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h3></li>
+          </ul>
+        </div>
+
+        }
       </div>
     );
   }
-
 }
 
 function mapStateToProps({coins, historicalPrice}){
   return { coins, historicalPrice }
 }
 
-export default connect(mapStateToProps, { fetchHistoricalDetail })(Home)
+export default connect(mapStateToProps, { fetchHistoricalDetail })(Home);
+
+
+
+// <div class="bml bkr acd aac">
+//   <h3 class="bkn">
+//     Old Price:
+//   </h3>
+//   <span class="bkm">${Object.values(this.props.historicalPrice)[0].USD}</span>
+// </div>
+// <div class="bml bkr acd aac">
+//   <h3 class="bkn">
+//     Current Price:
+//   </h3>
+//   <span class="bkm">${this.state.coin.price_usd}</span>
+// </div>
+// <div class="bml bkr acd aac">
+//   <h3 class="bkn">
+//     Today, ${this.state.amount} Would Be Worth:
+//   </h3>
+//   <span class="bkm">${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</span>
+// </div>
