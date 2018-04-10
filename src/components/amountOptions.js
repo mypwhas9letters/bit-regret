@@ -13,7 +13,7 @@ const Options = (props) => {
       <option value="119800">2018 BMW M6 Gran Coupe</option>
       <option value="179">Amazon Echo</option>
     </select>
-  )
+  );
 }
 
-export default Options
+export default Options;

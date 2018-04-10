@@ -35,17 +35,13 @@ class Home extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     this.props.fetchHistoricalDetail(this.state);
-    this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName), date: null})
+    this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName), date: null});
   }
 
   render(){
-    console.log(this.state)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <div className="col-md-9 pt-3">
-
-
-
         <h1 className="grayText">How Much You Could've Earned?</h1>
         <form onSubmit={this.onFormSubmit}>
           <div className="form-group">
@@ -53,6 +49,11 @@ class Home extends Component {
             <select className="form-control" name="coinName" onChange={this.onInputChange} required>
               { list }
             </select>
+          </div>
+
+          <div className="form-group">
+            <label>Date </label>
+              <DatePicker selected={this.state.date} onChange={this.dateChange} required/>
           </div>
 
           <div className="form-group">
@@ -66,29 +67,20 @@ class Home extends Component {
             }
           </div>
 
-          <div className="form-group">
-            <label>Date </label>
-              <DatePicker selected={this.state.date} onChange={this.dateChange} required/>
-          </div>
+
 
           <button type='submit' className="btn btn-primary">Submit</button>
         </form>
         <br />
         {this.props.historicalPrice === null ? null :
           Object.values(this.props.historicalPrice)[0].USD === 0 ? <h1 className="grayText">This coin did not exist</h1> :
-
           <div>
-
-
-
-
           <ul className="list-group">
             <li className="list-group-item grayBG"><h3>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h3></li>
             <li className="list-group-item grayBG"><h3>Current Price: ${this.state.coin.price_usd}</h3></li>
             <li className="list-group-item grayBG grayText"><h3>Today, ${this.state.amount} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h3></li>
           </ul>
         </div>
-
         }
       </div>
     );
@@ -100,24 +92,3 @@ function mapStateToProps({coins, historicalPrice}){
 }
 
 export default connect(mapStateToProps, { fetchHistoricalDetail })(Home);
-
-
-
-// <div class="bml bkr acd aac">
-//   <h3 class="bkn">
-//     Old Price:
-//   </h3>
-//   <span class="bkm">${Object.values(this.props.historicalPrice)[0].USD}</span>
-// </div>
-// <div class="bml bkr acd aac">
-//   <h3 class="bkn">
-//     Current Price:
-//   </h3>
-//   <span class="bkm">${this.state.coin.price_usd}</span>
-// </div>
-// <div class="bml bkr acd aac">
-//   <h3 class="bkn">
-//     Today, ${this.state.amount} Would Be Worth:
-//   </h3>
-//   <span class="bkm">${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</span>
-// </div>

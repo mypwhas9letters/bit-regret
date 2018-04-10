@@ -18,8 +18,7 @@ class Chart extends Component {
   // }
 
   render(){
-    console.log(this.props)
-    const tableRows = this.props.coins.map(coin => ChartData(coin))
+    const tableRows = this.props.coins.map(coin => ChartData(coin));
     return(
       <main role="main" className="col-md-9 pt-3">
       <h2 className="grayText">CryptoCurrency Market</h2>
@@ -40,7 +39,7 @@ class Chart extends Component {
         </table>
         </div>
       </main >
-    )
+    );
   }
 }
 
@@ -48,4 +47,4 @@ function mapStateToProps({ coins }){
   return { coins }
 }
 
-export default connect(mapStateToProps, { fetchTopNext80 })(Chart)
+export default connect(mapStateToProps, { fetchTopNext80 })(Chart);

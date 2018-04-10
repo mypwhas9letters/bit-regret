@@ -8,7 +8,7 @@ class CoinPage extends Component {
         <h1>Current coin selected: {this.props.current.name}</h1>
         <h1>Current price: {this.props.current.price_usd}</h1>
       </main>
-    )
+    );
   }
 }
 
@@ -18,4 +18,4 @@ function mapStateToProps({ coinReducer }){
   }
 }
 
-export default connect(mapStateToProps)(CoinPage)
+export default connect(mapStateToProps)(CoinPage);
