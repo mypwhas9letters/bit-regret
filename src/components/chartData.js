@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ChartData = (coin) => {
-  console.log(coin)
   const redOrGreen = coin.percent_change_24h >= 0 ? {color: 'green'} : {color: 'red'}
   return (
     <tr key={coin.name} className="grayText">

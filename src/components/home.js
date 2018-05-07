@@ -42,7 +42,6 @@ class Home extends Component {
   }
 
   render(){
-    console.log(this.props)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <div className="col-md-9 pt-3">
