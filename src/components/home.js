@@ -77,8 +77,8 @@ class Home extends Component {
           <div>
           <ul className="list-group">
             <li className="list-group-item grayBG"><h3>Old Price: ${Object.values(this.props.historicalPrice)[0].USD}</h3></li>
-            <li className="list-group-item grayBG"><h3>Current Price: ${this.state.coin.price_usd}</h3></li>
-            <li className="list-group-item grayBG grayText"><h3>Today, ${this.state.amount} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.price_usd}</h3></li>
+            <li className="list-group-item grayBG"><h3>Current Price: ${this.state.coin.quotes.USD.price}</h3></li>
+            <li className="list-group-item grayBG grayText"><h3>Today, ${this.state.amount} Would Be Worth: ${(this.state.amount / Object.values(this.props.historicalPrice)[0].USD)* this.state.coin.quotes.USD.price}</h3></li>
           </ul>
         </div>
         }

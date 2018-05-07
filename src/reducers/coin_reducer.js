@@ -1,7 +1,8 @@
-function coinsReducer(state = {coins: [], currentCoin: "Empty", historicalPrice: null}, action){
+function coinsReducer(state = {coins: null, currentCoin: "Empty", historicalPrice: null}, action){
   switch (action.type){
     case "FETCHED_COINS":
-      return Object.assign({}, state, {coins: action.payload})
+      const sorted = Object.values(action.payload.data).sort((a,b)=>a.rank - b.rank)
+      return Object.assign({}, state, {coins: sorted})
     case "VIEW_COIN":
       return Object.assign({}, state, {currentCoin: action.payload})
     case "HISTORICAL_DATA":

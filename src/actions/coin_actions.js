@@ -9,7 +9,7 @@ export function viewCoin(coin){
 
 export function fetchTopTwenty(){
   return function(dispatch){
-    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=20")
+    fetch("https://api.coinmarketcap.com/v2/ticker/?limit=20")
     .then(res => res.json())
     .then(json => {
       dispatch({
@@ -21,7 +21,7 @@ export function fetchTopTwenty(){
 
 export function fetchTopNext80(){
   return function(dispatch){
-    fetch("https://api.coinmarketcap.com/v1/ticker/?start=21&limit=80")
+    fetch("https://api.coinmarketcap.com/v2/ticker/?start=21&limit=80")
     .then(res => res.json())
     .then(json => {
       dispatch({

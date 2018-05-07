@@ -11,7 +11,7 @@ class Sidebar extends Component{
   }
 
   render(){
-    const coinList = this.props.coins === null ? null : this.props.coins.map(coin => SideBarData(coin));
+    const coinList = this.props.coins ?  this.props.coins.map(coin => SideBarData(coin)) : null;
     return(
       <nav className="col-md-3 d-none d-md-block sidebar">
         <ul className="nav nav-pills flex-column">
