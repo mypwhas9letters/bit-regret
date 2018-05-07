@@ -19,15 +19,20 @@ export function fetchTopTwenty(){
   }
 }
 
-export function fetchTopNext80(){
+// export function fetchTopNext80(){
+//   return function(dispatch){
+//     fetch("https://api.coinmarketcap.com/v2/ticker/?start=21&limit=80")
+//     .then(res => res.json())
+//     .then(json => {
+//       dispatch({
+//         type: "FETCHED_COINS",
+//         payload: json})
+//     })
+//   }
+// }
+export function clearHistoricalDetail(){
   return function(dispatch){
-    fetch("https://api.coinmarketcap.com/v2/ticker/?start=21&limit=80")
-    .then(res => res.json())
-    .then(json => {
-      dispatch({
-        type: "FETCHED_COINS",
-        payload: json})
-    })
+    dispatch({ type: "CLEAR_HISTORICAL_DATA"})
   }
 }
 

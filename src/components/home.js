@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { fetchHistoricalDetail } from '../actions/coin_actions';
+import { fetchHistoricalDetail, clearHistoricalDetail } from '../actions/coin_actions';
 import Options from './amountOptions';
 
 class Home extends Component {
@@ -37,8 +37,12 @@ class Home extends Component {
     this.props.fetchHistoricalDetail(this.state);
     this.setState({coin: this.props.coins.find(x=>x.symbol === this.state.coinName), date: null});
   }
+  componentWillUnmount(){
+    this.props.clearHistoricalDetail();
+  }
 
   render(){
+    console.log(this.props)
     const list = !this.props.coins ? null : this.props.coins.map(coin => <option key={coin.name} value={coin.symbol} price={coin.price_usd}>{coin.name}</option>)
     return(
       <div className="col-md-9 pt-3">
@@ -91,4 +95,4 @@ function mapStateToProps({coins, historicalPrice}){
   return { coins, historicalPrice }
 }
 
-export default connect(mapStateToProps, { fetchHistoricalDetail })(Home);
+export default connect(mapStateToProps, { fetchHistoricalDetail, clearHistoricalDetail })(Home);

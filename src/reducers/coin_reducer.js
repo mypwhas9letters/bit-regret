@@ -7,6 +7,8 @@ function coinsReducer(state = {coins: null, currentCoin: "Empty", historicalPric
       return Object.assign({}, state, {currentCoin: action.payload})
     case "HISTORICAL_DATA":
       return Object.assign({}, state, {historicalPrice: action.payload})
+    case "CLEAR_HISTORICAL_DATA":
+      return Object.assign({}, state, {historicalPrice: null})
     default:
       return state;
   }
